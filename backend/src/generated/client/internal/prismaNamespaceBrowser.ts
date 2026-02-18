@@ -51,7 +51,8 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
-  User: 'User'
+  User: 'User',
+  StravaAccount: 'StravaAccount'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -73,13 +74,28 @@ export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof
 export const UserScalarFieldEnum = {
   id: 'id',
   email: 'email',
-  password_hash: 'password_hash',
   role: 'role',
   created_at: 'created_at',
   updated_at: 'updated_at'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+export const StravaAccountScalarFieldEnum = {
+  id: 'id',
+  user_id: 'user_id',
+  athlete_id: 'athlete_id',
+  access_token: 'access_token',
+  refresh_token: 'refresh_token',
+  expires_at: 'expires_at',
+  profile_url: 'profile_url',
+  username: 'username',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type StravaAccountScalarFieldEnum = (typeof StravaAccountScalarFieldEnum)[keyof typeof StravaAccountScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -96,4 +112,12 @@ export const QueryMode = {
 } as const
 
 export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+export const NullsOrder = {
+  first: 'first',
+  last: 'last'
+} as const
+
+export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
