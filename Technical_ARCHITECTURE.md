@@ -12,7 +12,10 @@ Backend:
 - NestJS (Modular monolith)
 
 Database:
-- PostgreSQL
+- Supabase (PostgreSQL)
+  - Dev: Self-hosted via Docker
+  - Prod: Supabase Cloud
+- Prisma ORM
 
 Queue:
 - Redis + BullMQ
@@ -49,7 +52,7 @@ Payments Webhook
 # 3. Backend Modules
 
 ## Core Modules
-- Auth Module (JWT-based)
+- Auth Module (Better-Auth + Prisma Adapter)
 - Users Module
 - RBAC Module
 - Strava Integration Module
@@ -205,4 +208,7 @@ Payments Webhook
 - AI-based performance engine
 - Mobile app (React Native)
 - Microservice decomposition
+- Microservice decomposition
 - Event-driven architecture
+- **API Documentation**: Swagger / OpenAPI
+- **Edge Functions**: Supabase Edge Functions (for specific triggers)
