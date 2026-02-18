@@ -34,3 +34,4 @@ yarn-error.log*
 !.vscode/tasks.json
 .idea
 *.sublime-workspace
+*.log

@@ -384,7 +384,8 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 
 export const ModelName = {
-  User: 'User'
+  User: 'User',
+  StravaAccount: 'StravaAccount'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -400,7 +401,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user"
+    modelProps: "user" | "stravaAccount"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -478,6 +479,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    StravaAccount: {
+      payload: Prisma.$StravaAccountPayload<ExtArgs>
+      fields: Prisma.StravaAccountFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.StravaAccountFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StravaAccountPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.StravaAccountFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StravaAccountPayload>
+        }
+        findFirst: {
+          args: Prisma.StravaAccountFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StravaAccountPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.StravaAccountFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StravaAccountPayload>
+        }
+        findMany: {
+          args: Prisma.StravaAccountFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StravaAccountPayload>[]
+        }
+        create: {
+          args: Prisma.StravaAccountCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StravaAccountPayload>
+        }
+        createMany: {
+          args: Prisma.StravaAccountCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.StravaAccountCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StravaAccountPayload>[]
+        }
+        delete: {
+          args: Prisma.StravaAccountDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StravaAccountPayload>
+        }
+        update: {
+          args: Prisma.StravaAccountUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StravaAccountPayload>
+        }
+        deleteMany: {
+          args: Prisma.StravaAccountDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.StravaAccountUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.StravaAccountUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StravaAccountPayload>[]
+        }
+        upsert: {
+          args: Prisma.StravaAccountUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StravaAccountPayload>
+        }
+        aggregate: {
+          args: Prisma.StravaAccountAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateStravaAccount>
+        }
+        groupBy: {
+          args: Prisma.StravaAccountGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.StravaAccountGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.StravaAccountCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.StravaAccountCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -520,13 +595,28 @@ export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof
 export const UserScalarFieldEnum = {
   id: 'id',
   email: 'email',
-  password_hash: 'password_hash',
   role: 'role',
   created_at: 'created_at',
   updated_at: 'updated_at'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+export const StravaAccountScalarFieldEnum = {
+  id: 'id',
+  user_id: 'user_id',
+  athlete_id: 'athlete_id',
+  access_token: 'access_token',
+  refresh_token: 'refresh_token',
+  expires_at: 'expires_at',
+  profile_url: 'profile_url',
+  username: 'username',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type StravaAccountScalarFieldEnum = (typeof StravaAccountScalarFieldEnum)[keyof typeof StravaAccountScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -543,6 +633,14 @@ export const QueryMode = {
 } as const
 
 export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+export const NullsOrder = {
+  first: 'first',
+  last: 'last'
+} as const
+
+export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 
 
@@ -562,6 +660,20 @@ export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 
  * Reference to a field of type 'String[]'
  */
 export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Role'
+ */
+export type EnumRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Role'>
+    
+
+
+/**
+ * Reference to a field of type 'Role[]'
+ */
+export type ListEnumRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Role[]'>
     
 
 
@@ -590,6 +702,20 @@ export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'In
  * Reference to a field of type 'Int[]'
  */
 export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Float'
+ */
+export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+/**
+ * Reference to a field of type 'Float[]'
+ */
+export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
 
 /**
@@ -688,6 +814,7 @@ export type PrismaClientOptions = ({
 }
 export type GlobalOmitConfig = {
   user?: Prisma.UserOmit
+  stravaAccount?: Prisma.StravaAccountOmit
 }
 
 /* Types for Logging */
