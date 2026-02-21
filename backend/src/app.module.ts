@@ -10,8 +10,8 @@ import { AuthModule } from './auth/auth.module';
     ConfigModule.forRoot({
       isGlobal: true,
     }),
-    PrismaModule, 
-    AuthModule
+    PrismaModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
