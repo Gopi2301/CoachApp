@@ -1,0 +1,46 @@
+generator client {
+  provider        = "prisma-client"
+  output          = "../src/generated/client"
+  previewFeatures = ["driverAdapters"]
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id         String   @id @default(uuid())
+  email      String   @unique
+  role       Role     @default(ATHLETE)
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  strava_account StravaAccount?
+
+  @@map("users")
+}
+
+model StravaAccount {
+  id            String   @id @default(uuid())
+  user_id       String   @unique
+  user          User     @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  
+  athlete_id    String   @unique // Strava's athlete ID
+  access_token  String
+  refresh_token String
+  expires_at    Int      // Unix timestamp
+  
+  profile_url   String?
+  username      String?
+  
+  created_at    DateTime @default(now())
+  updated_at    DateTime @updatedAt
+
+  @@map("strava_accounts")
+}
+
+enum Role {
+  ATHLETE
+  COACH
+  ADMIN
+}
