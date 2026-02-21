@@ -13,7 +13,9 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       ignoreExpiration: false,
-      secretOrKey: configService.get<string>('SUPABASE_JWT_SECRET') || 'fallback_secret_do_not_use',
+      secretOrKey:
+        configService.get<string>('SUPABASE_JWT_SECRET') ||
+        'fallback_secret_do_not_use',
     });
   }
 
@@ -22,10 +24,13 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     if (!payload.sub) {
       throw new UnauthorizedException('Invalid token payload');
     }
-    
+
     // Verify the user exists in our DB and fetch role
     const user = await this.prisma.user.findUnique({
       where: { id: payload.sub },
+      include: {
+        strava_account: true,
+      },
     });
 
     if (!user) {
